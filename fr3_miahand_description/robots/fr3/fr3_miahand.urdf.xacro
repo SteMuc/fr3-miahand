@@ -24,6 +24,4 @@
                       rpy="$(arg rpy)">
   </xacro:franka_robot>
 
-  <!-- miahand macro -->
-
 </robot>
