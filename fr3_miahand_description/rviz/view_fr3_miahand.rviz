@@ -7,6 +7,8 @@ Panels:
         - /Global Options1
         - /Status1
         - /RobotModel1
+        - /TF1
+        - /TF1/Frames1
       Splitter Ratio: 0.5
     Tree Height: 845
   - Class: rviz/Selection
@@ -62,6 +64,11 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
+        URflange:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
         fr3_link0:
           Alpha: 1
           Show Axes: false
@@ -146,12 +153,182 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+        hand_ee_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        index_fle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        index_sensor:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        little_fle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        middle_fle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        middle_sensor:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        palm:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        ring_fle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        thumb_fle:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        thumb_opp:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        thumb_sensor:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
       Name: RobotModel
       Robot Description: robot_description
       TF Prefix: ""
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz/TF
+      Enabled: true
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Frames:
+        All Enabled: false
+        URflange:
+          Value: false
+        fr3_link0:
+          Value: true
+        fr3_link0_sc:
+          Value: false
+        fr3_link1:
+          Value: false
+        fr3_link1_sc:
+          Value: false
+        fr3_link2:
+          Value: false
+        fr3_link2_sc:
+          Value: false
+        fr3_link3:
+          Value: false
+        fr3_link3_sc:
+          Value: false
+        fr3_link4:
+          Value: false
+        fr3_link4_sc:
+          Value: false
+        fr3_link5:
+          Value: false
+        fr3_link5_sc:
+          Value: false
+        fr3_link6:
+          Value: false
+        fr3_link6_sc:
+          Value: false
+        fr3_link7:
+          Value: false
+        fr3_link7_sc:
+          Value: false
+        fr3_link8:
+          Value: false
+        hand_ee_link:
+          Value: true
+        index_fle:
+          Value: false
+        index_sensor:
+          Value: false
+        little_fle:
+          Value: false
+        middle_fle:
+          Value: false
+        middle_sensor:
+          Value: false
+        palm:
+          Value: false
+        ring_fle:
+          Value: false
+        thumb_fle:
+          Value: false
+        thumb_opp:
+          Value: false
+        thumb_sensor:
+          Value: false
+      Marker Alpha: 1
+      Marker Scale: 0.5
+      Name: TF
+      Show Arrows: false
+      Show Axes: true
+      Show Names: true
+      Tree:
+        fr3_link0:
+          fr3_link0_sc:
+            {}
+          fr3_link1:
+            fr3_link1_sc:
+              {}
+            fr3_link2:
+              fr3_link2_sc:
+                {}
+              fr3_link3:
+                fr3_link3_sc:
+                  {}
+                fr3_link4:
+                  fr3_link4_sc:
+                    {}
+                  fr3_link5:
+                    fr3_link5_sc:
+                      {}
+                    fr3_link6:
+                      fr3_link6_sc:
+                        {}
+                      fr3_link7:
+                        fr3_link7_sc:
+                          {}
+                        fr3_link8:
+                          URflange:
+                            palm:
+                              hand_ee_link:
+                                {}
+                              index_fle:
+                                index_sensor:
+                                  {}
+                              little_fle:
+                                {}
+                              middle_fle:
+                                middle_sensor:
+                                  {}
+                              ring_fle:
+                                {}
+                              thumb_opp:
+                                thumb_sensor:
+                                  thumb_fle:
+                                    {}
+      Update Interval: 0
+      Value: true
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
@@ -180,7 +357,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 10
+      Distance: 0.9876729249954224
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -188,17 +365,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0
-        Y: 0
-        Z: 0
+        X: 0.4332033395767212
+        Y: -0.01949322782456875
+        Z: 0.20865881443023682
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4253980815410614
+      Pitch: 0.4753989577293396
       Target Frame: <Fixed Frame>
-      Yaw: 6.2785844802856445
+      Yaw: 0.48040464520454407
     Saved: ~
 Window Geometry:
   Displays:

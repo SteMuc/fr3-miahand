@@ -1,7 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fr3">
-
-  <xacro:include filename="$(find fr3_miahand_description)/robots/common/franka_robot.xacro"/>
+  
+  <xacro:include filename="$(find fr3_miahand_description)/robots/common/properties.xacro" />
+  <xacro:include filename="$(find fr3_miahand_description)/robots/common/franka_robot.xacro" />
+  <xacro:include filename="$(find fr3_miahand_description)/robots/mia/mia_hand_flange.xacro" />
 
   <!-- Name for this robot -->
   <xacro:arg name="arm_id" default="fr3" />
@@ -23,5 +25,8 @@
                       xyz="$(arg xyz)"
                       rpy="$(arg rpy)">
   </xacro:franka_robot>
+
+  <!-- mia hand macro with URFlange -->
+  <xacro:mia_hand_flange parent="fr3_link8" gazebo="$(arg gazebo)" />
 
 </robot>
