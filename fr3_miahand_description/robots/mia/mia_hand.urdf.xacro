@@ -28,7 +28,6 @@
             <child link="palm" />
         </joint>
 
-
         <!-- Include the macro to read yaml File-->
         <xacro:include filename="$(find mia_hand_description)/urdf/inc/mia_hand_common.xacro" />
         <!-- Load configuration data from the provided .yaml files -->
