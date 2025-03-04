@@ -40,12 +40,12 @@
     <link name="${prefix}${name}">
       <visual>
         <geometry>
-          <mesh filename="package://${description_pkg}/meshes/visual/${name}.dae" />
+          <mesh filename="package://${description_pkg}/meshes/fr3/visual/${name}.dae" />
         </geometry>
       </visual>
       <collision>
         <geometry>
-          <mesh filename="package://${description_pkg}/meshes/collision/${name}.stl" />
+          <mesh filename="package://${description_pkg}/meshes/fr3/collision/${name}.stl" />
         </geometry>
       </collision>
       <xacro:if value="${gazebo}">

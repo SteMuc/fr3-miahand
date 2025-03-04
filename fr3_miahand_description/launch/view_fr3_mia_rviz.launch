@@ -1,11 +1,13 @@
 <launch>
   <!-- LAUNCH ARGUMENTS -->
+  <arg name="flange_deg_90" default="false" />
   <arg name="model" default="$(find fr3_miahand_description)/robots/fr3/fr3_miahand.urdf.xacro" />
 
   <!-- START LAUNCH -->
 
   <!-- Robot description -->
-  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find fr3_miahand_description)/robots/fr3/fr3_miahand.urdf.xacro'
+  	flange_deg_90:=$(arg flange_deg_90)" />
 
   <!-- Launch joint state publisher GUI -->
   <node name="joint_state_publisher" pkg="joint_state_publisher_gui"

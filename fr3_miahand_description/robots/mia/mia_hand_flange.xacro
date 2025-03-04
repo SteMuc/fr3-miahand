@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro">
-    <xacro:macro name="mia_hand_flange" params="parent gazebo">
+    <xacro:macro name="mia_hand_flange" params="parent gazebo *origin">
 
         <!-- true it loads robot model with default config provided by default yaml file
     False it loads calibrated robot model configuaration yaml file.
@@ -59,7 +59,7 @@
         </link>
 
         <joint name="j_fr3_link8_to_URflange" type="fixed">
-            <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${pi}" />
+            <xacro:insert_block name="origin"/>
             <parent link="${parent}" />
             <child link="URflange" />
         </joint>
