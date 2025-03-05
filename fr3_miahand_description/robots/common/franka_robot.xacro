@@ -16,7 +16,7 @@
       </xacro:if>
 
       <xacro:table parent="$(arg parent)">
-        <origin xyz="0.0 0.0 0.6" rpy="0.0 0.0 0.0" />
+        <origin xyz="0.0 0.0 ${heigth_leg_table}" rpy="0.0 0.0 0.0" />
       </xacro:table>
 
       <!-- <joint name="${parent}_joint" type="fixed">

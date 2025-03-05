@@ -21,9 +21,9 @@
   <xacro:arg name="parent" default="world" />
   <!-- If `gazebo` arg is set and `parent` not empty, what position offset between `parent` &
   base_link_table -->
-  <xacro:arg name="xyz" default="0 0 0.024" />
+  <xacro:arg name="xyz" default="${-base_link_table_x} 0 ${heigth_robot_table}" />
   <!-- If `gazebo` arg is set and `parent` not empty, what rotation offset between `parent` &
-  $(arm_id)_link0 -->
+  base_link_table -->
   <xacro:arg name="rpy" default="0 0 0" />
 
   <xacro:arg name="flange_deg_90" default="false" />

@@ -2,5 +2,8 @@
 <robot name="utils" xmlns:xacro="http://ros.org/wiki/xacro">
 
     <xacro:property name="pi" value="3.1415" />
+    <xacro:property name="heigth_robot_table" value="0.024" />
+    <xacro:property name="heigth_leg_table" value="0.6" />
+    <xacro:property name="base_link_table_x" value="0.5" />
 
 </robot>
