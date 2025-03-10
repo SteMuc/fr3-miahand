@@ -1,62 +1,62 @@
-<?xml version='1.0' encoding='utf-8'?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="fr3">
-
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://wiki.ros.org/xacro" name="mia_hand_on_panda">
+  
+  <arg name="robot" default="fr3" />
+  <xacro:arg name="arm_id" default="$(arg robot)" />
+  <!-- Include macro properties -->
   <xacro:include filename="$(find fr3_miahand_description)/robots/common/properties.xacro" />
+  <!-- Include mia adapter macro -->
+  <xacro:include filename="$(find fr3_miahand_description)/robots/common/mia_adapter.xacro" />
 
-  <!-- Include macro table -->
-  <xacro:include filename="$(find fr3_miahand_description)/robots/extra/table.xacro" />
-  <xacro:include filename="$(find fr3_miahand_description)/robots/common/franka_robot.xacro" />
-  <xacro:include filename="$(find fr3_miahand_description)/robots/mia/mia_hand_flange.xacro" />
+  <!-- Make use of franka arm macro -->
+  <xacro:include filename="$(find fr3_miahand_description)/robots/common/franka_arm.xacro" />
 
-  <!-- Include macro for flange deg 90 -->
-  <xacro:include filename="$(find fr3_miahand_description)/robots/common/flange_deg_90.xacro" />
+  <!-- Gazebo -->
+  <xacro:gazebo-joint joint="fr3_joint1" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="fr3_joint2" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="fr3_joint3" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="fr3_joint4" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="fr3_joint5" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="fr3_joint6" transmission="hardware_interface/PositionJointInterface" />
+  <xacro:gazebo-joint joint="fr3_joint7" transmission="hardware_interface/PositionJointInterface" />
 
-  <!-- Name for this robot -->
-  <xacro:arg name="arm_id" default="fr3" />
-
-  <!-- Is the robot being simulated in gazebo?" -->
-  <xacro:arg name="gazebo" default="false" />
-  <!-- If `gazebo` arg is set, to which frame shall $(arm_id)_link0 be parented. Empty string for
-  not fixing at all -->
-  <xacro:arg name="parent" default="world" />
-  <!-- If `gazebo` arg is set and `parent` not empty, what position offset between `parent` &
-  base_link_table -->
-  <xacro:arg name="xyz" default="${-base_link_table_x} 0 ${heigth_robot_table}" />
-  <!-- If `gazebo` arg is set and `parent` not empty, what rotation offset between `parent` &
-  base_link_table -->
-  <xacro:arg name="rpy" default="0 0 0" />
-
-  <xacro:arg name="flange_deg_90" default="false" />
-
-  <!-- fr3 macro -->
-  <xacro:franka_robot arm_id="$(arg arm_id)"
+  <!-- Instantiate the UR robot and pass it all the required arguments. -->
+  <xacro:franka_arm
     joint_limits="${xacro.load_yaml('$(find fr3_miahand_description)/robots/fr3/joint_limits.yaml')}"
-    gazebo="$(arg gazebo)"
-    parent="$(arg parent)"
-    xyz="$(arg xyz)"
-    rpy="$(arg rpy)">
-  </xacro:franka_robot>
+    gazebo="True"
+    arm_id="$(arg arm_id)"
+  />
 
-  <!-- mia hand macro with URFlange  -->
-  <!-- Check if you want to add also the 90 deg flange -->
+  <!-- Arm base -->
+  <xacro:include filename="$(find fr3_miahand_description)/robots/extra/arm_base.urdf.xacro" />
 
-  <xacro:if value="$(arg flange_deg_90)">
+  <!-- Attach arm to the arm base -->
+  <joint name="robot_fix" type="fixed">
+    <parent link="arm_base" />
+    <child link="$(arg arm_id)_link0" />
+    <origin xyz="${arm_pos_x} 0 ${heigth_arm_base_z}" rpy="0 0 0" />
+  </joint>
 
-    <!-- Add the 90 degree flange between fr3_link8 and the mia hand -->
-    <xacro:flange_deg_90 parent="fr3_link8" />
+  <!-- Mia adapter -->
+  <xacro:flange_deg_90 parent="$(arg arm_id)_link8" />
 
-    <!-- Add mia hand -->
-    <xacro:mia_hand_flange parent="attach_link" gazebo="$(arg gazebo)">
-      <origin xyz="0.0 0.0 0.0" rpy="${pi / 2.0} ${-pi / 2.0} 0.0" />
-    </xacro:mia_hand_flange>
-  </xacro:if>
+  <!-- Mia hand on UR flange -->
+  <xacro:include
+    filename="$(find
+  artificial_hands_description)/urdf/mia_hand_on_ur_flange.urdf.xacro" />
 
-  <xacro:unless value="$(arg flange_deg_90)">
-    <!-- Add mia hand -->
-    <xacro:mia_hand_flange parent="fr3_link8" gazebo="$(arg gazebo)">
-      <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 ${pi}" />
-    </xacro:mia_hand_flange>
-  </xacro:unless>
+  <!-- Attach Mia hand  -->
+  <joint name="mia_fix" type="fixed">
+    <origin xyz="0.0 ${-flange_offset_y} 0.0" rpy="0.0 0.0 ${-pi}"/>
+    <parent link="mia_adapter"/>
+    <child link="palm"/>
+  </joint>  
 
+  <!-- Instantiate the Mia hand Gazebo robot and pass it all the required arguments. -->
+  <xacro:include filename="$(find mia_hand_description)/urdf/mia_hand_gazebo.urdf.xacro" /> -->
+
+  <xacro:mia_gazebo 
+    robotNamespace=""
+  /> 
 
 </robot>

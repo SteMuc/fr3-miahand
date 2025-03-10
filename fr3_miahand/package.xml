@@ -17,6 +17,7 @@
 
   <buildtool_depend>catkin</buildtool_depend>
   <exec_depend>fr3_miahand_description</exec_depend>
+  <exec_depend>fr3_miahand_gazebo</exec_depend>
 
   <export>
     <metapackage/>

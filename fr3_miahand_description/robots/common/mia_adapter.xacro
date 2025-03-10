@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:macro name="flange_deg_90"
+        params="parent description_pkg:='fr3_miahand_description' gazebo:='False'">
+
+        <link name="mia_adapter">
+            <visual>
+                <geometry>
+                    <mesh filename="package://${description_pkg}/meshes/extra/flange_deg_90.stl"
+                        scale="0.001 0.001 0.001" />
+                </geometry>
+                <material name="darkGrey">
+                    <color rgba="${150/255} ${150/255} ${255/255} 1.0" />
+                </material>
+            </visual>
+            <collision>
+                <geometry>
+                    <mesh filename="package://${description_pkg}/meshes/extra/flange_deg_90.stl"
+                        scale="0.001 0.001 0.001" />
+                </geometry>
+            </collision>
+        </link>
+
+        <joint name="adapter_fix" type="fixed">
+            <origin xyz="0.045 0 0.035" rpy="0.0 0.0 ${pi / 2.0}" />
+            <parent link="${parent}" />
+            <child link="mia_adapter" />
+        </joint>
+        <xacro:if value="$(arg gazebo)">
+            <gazebo reference="mia_adapter">
+                <material>Gazebo/DarkGrey</material>
+                <selfCollide>False</selfCollide>
+            </gazebo>
+        </xacro:if>
+
+        <!-- Attach Mia adapter  -->
+        <!-- <joint name="adapter_fix" type="fixed">
+            <origin xyz="0.0 -0.02 0" rpy="0 0 ${-pi}" />
+            <parent link="attach_link" />
+            <child link="palm" />
+        </joint> -->
+    </xacro:macro>
+</robot>
